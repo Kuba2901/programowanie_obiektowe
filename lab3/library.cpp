@@ -5,7 +5,7 @@
 using namespace std;
 
 ostream& operator <<(ostream& os,  Library& library) {
-    cout << "Wypisanie biblioteki" << endl;
+    cout << "Wypisanie biblioteki: " << endl;
     return os;
 }
 
