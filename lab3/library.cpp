@@ -48,7 +48,7 @@ Library& Library::operator=(const Library& right) {
 }
 
 // Przenoszący operator przypisania
-Library& Library::operator=(Library&& right) {
+Library& Library::operator=(Library&& right){
     cout << "Przenoszący operator przypisania" << endl; 
     size = move(right.size);
     array = move(right.array);
@@ -66,6 +66,8 @@ const Book& Library::operator[](size_t index) const {
 
 Library::~Library() {
     cout << "Destruktor biblioteki" << endl;
+    // Nie dziala (pointer nie wskazuje na nic)
+    
     // if (array != nullptr) {
     //     delete[] array;
     // }
