@@ -19,7 +19,32 @@ public class Skalowanie implements Transformacja {
 
     @Override
     public Punkt transformuj(Punkt p) {
-        return new Punkt(skalaX * p.getX(), skalaY * p.getY());
+        try {
+            Punkt center = Uklad.getInstance().getCenter();
+            // Translacja punktu
+            Transformacja translacja = new Translacja(Punkt.O.getX() - center.getX(), Punkt.O.getY() - center.getY());
+
+            // Nowy punkt przesuniety wzgledem centrum ukladu
+            Punkt p1 = translacja.transformuj(p);
+
+            // Skalowanie po translacji
+            Punkt p2 = new Punkt(skalaX * p1.getX(), skalaY * p1.getY());
+
+
+            try {
+                Transformacja odwrotna = translacja.getTransformacjaOdwrotna();
+                Punkt p3 = odwrotna.transformuj(p2);
+                return p3;
+            } catch (BrakTransformacjiOdwrotnejException e) {
+                e.printStackTrace();
+            }
+            } catch (BrakUkladuException e) {
+                System.out.println(e.getStackTrace());
+            }
+        
+
+        return new Punkt(0,0);
+
     }
 
     public double getSkalaX() {

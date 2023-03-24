@@ -20,7 +20,7 @@ public class ZlozenieTransformacji implements Transformacja {
 
         for (int i = 0; i < len; i++) {
             try {
-                trans1.tab[i] = tab[i].getTransformacjaOdwrotna();
+                trans1.tab[i] = tab[len-i-1].getTransformacjaOdwrotna();
 
             } catch (BrakTransformacjiOdwrotnejException e) {
                 e.printStackTrace();
@@ -33,6 +33,7 @@ public class ZlozenieTransformacji implements Transformacja {
 
     @Override
     public Punkt transformuj(Punkt p) {
+
         Punkt p1 = p;
 
         for (int i = 0; i < len; i++) {
